@@ -1,3 +1,6 @@
+import SimpleLightbox from 'simplelightbox';
+import 'simplelightbox/dist/simple-lightbox.min.css';
+
 const images = [
   {
     preview:
@@ -82,23 +85,6 @@ images.forEach(item => {
   galleryLink.classList.add('gallery__link');
   galleryLink.setAttribute('href', item.original);
 
-  const modal = basicLightbox.create(
-    `<div class="modal">
-        <img src="${item.original}" alt="${item.description}">
-    </div>`
-  );
-
-  galleryLink.addEventListener('click', event => {
-    event.preventDefault();
-    modal.show();
-  });
-
-  document.addEventListener('keydown', event => {
-    if (event.code === 'Escape') {
-      modal.close();
-    }
-  });
-
   const image = document.createElement('img');
   image.classList.add('gallery__image');
   image.setAttribute('src', item.preview);
@@ -108,4 +94,8 @@ images.forEach(item => {
   galleryItem.appendChild(galleryLink);
   galleryLink.appendChild(image);
   gallery.appendChild(galleryItem);
+});
+
+new SimpleLightbox('.gallery a', {
+  /* options */
 });
